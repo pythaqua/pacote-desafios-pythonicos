@@ -7,9 +7,27 @@ Exemplo: 'spring' retorna 'spng'. Entretanto, se o tamanho da string
 for menor que 2, retorne uma string vazia.
 """
 
+# Solução #1: com uma linha
+
+# def both_ends(s):
+#     return '' if len(s) < 2 else ''.join([s[:2],s[-2:]])
+
+# Solução #2: sem usar facilidades do Python, com while para contagem, deixando código expressivo
+
 def both_ends(s):
-    # +++ SUA SOLUÇÃO +++
-    return
+    s_length = len(s)
+    output = []
+    if s_length > 1:
+        counter = 0
+        first_part, last_part = [], []
+        while counter < s_length:
+            if counter < 2:
+                first_part.append(s[counter])
+            if counter > (s_length - 3):
+                last_part.append(s[counter])
+            counter += 1
+        output.extend([*first_part, *last_part])
+    return ''.join(output)
 
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
@@ -36,4 +54,5 @@ if __name__ == '__main__':
     test(both_ends, 'spring', 'spng')
     test(both_ends, 'Hello', 'Helo')
     test(both_ends, 'a', '')
+    test(both_ends, 'ha', 'haha') # Additional test with two distinct letters word
     test(both_ends, 'xyz', 'xyyz')
