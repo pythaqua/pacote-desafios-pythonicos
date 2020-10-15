@@ -20,8 +20,8 @@ def both_ends(s):
     Returns a new word made of the first two and last two letters of a given word.
     If only a letter is passed, returns an empty string.
     """
-    test_for_one_word_argument = type(s) == str and len(s.split()) == 1
-    if test_for_one_word_argument:
+    is_one_word_str = type(s) == str and len(s.split()) == 1
+    if is_one_word_str:
         s_length = len(s)
         output = []
         if s_length > 1:
