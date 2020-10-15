@@ -13,22 +13,30 @@ for menor que 2, retorne uma string vazia.
 #     return '' if len(s) < 2 else ''.join([s[:2],s[-2:]])
 
 # Solução #2: sem usar facilidades do Python, com while para contagem, deixando código expressivo
+# e testando se apenas uma palavra é passada como argumento
 
 def both_ends(s):
-    s_length = len(s)
-    output = []
-    if s_length > 1:
-        counter = 0
-        first_part, last_part = [], []
-        while counter < s_length:
-            if counter < 2:
-                first_part.append(s[counter])
-            if counter > (s_length - 3):
-                last_part.append(s[counter])
-            counter += 1
-        output.extend([*first_part, *last_part])
+    """
+    Returns a new word made of the first two and last two letters of a given word.
+    If only a letter is passed, returns an empty string.
+    """
+    test_for_one_word_argument = type(s) == str and len(s.split()) == 1
+    if test_for_one_word_argument:
+        s_length = len(s)
+        output = []
+        if s_length > 1:
+            counter = 0
+            first_part, last_part = [], []
+            while counter < s_length:
+                if counter < 2:
+                    first_part.append(s[counter])
+                if counter > (s_length - 3):
+                    last_part.append(s[counter])
+                counter += 1
+            output.extend([*first_part, *last_part])
+    else:
+        raise TypeError("Argument must be a one-word string")
     return ''.join(output)
-
 
 # --- Daqui para baixo são apenas códigos auxiliáries de teste. ---
 
